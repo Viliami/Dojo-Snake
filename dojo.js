@@ -1,6 +1,26 @@
 var X = 0, Y = 1;
 var LEFT = 37, RIGHT = 39, UP = 38, DOWN = 40;
 
+function getRandomInt(min, max) {
+    return (Math.floor(Math.random() * (max-min+1) + min));
+}
+
+var Fruit = function(){
+    this.x = getRandomInt(1,10)*50;
+    this.y = getRandomInt(1,10)*50;
+    var x = this.x;
+    var y = this.y;
+    require(["dojo/dom-construct", "dojo/dom", "dojo/dom-style", "dojo/fx", "dojo/_base/window", "dojo/domReady!"], function(domConstruct, dom, domStyle, fx, win){
+        var container = domConstruct.toDom("<div id = 'fruitContainer'></div>");
+        domConstruct.place(container, win.body());
+        var innerdiv = domConstruct.toDom("<div id = 'fruit'></div>");
+        domConstruct.place(innerdiv,"fruitContainer");
+        domStyle.set("fruitContainer", {position: "absolute", left: x+"px", top: y+"px"});
+    });
+};
+
+var fruit = new Fruit();
+
 var Snake = function(startX, startY){
     console.log("new snake created");
     this.blocks = [];
