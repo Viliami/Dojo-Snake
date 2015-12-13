@@ -19,6 +19,16 @@ var Fruit = function(){
     });
 };
 
+Fruit.prototype.respawn = function(){
+    this.x = getRandomInt(1,10)*50;
+    this.y = getRandomInt(1,10)*50;
+    var x = this.x;
+    var y = this.y;
+    require(["dojo/dom-style", "dojo/domReady!"], function(domStyle){
+        domStyle.set("fruitContainer", {position: "absolute", left: x+"px", top: y+"px"});
+    });
+}
+
 var fruit = new Fruit();
 
 var Snake = function(startX, startY){
@@ -110,6 +120,10 @@ Snake.prototype.update = function () {
         this.redraw();
     }
     this.isUpdated = false;
+    if(this.blocks[0][X] == fruit.x && this.blocks[0][Y] == fruit.y){
+        console.log("score++");
+        fruit.respawn();
+    }
 }
 
 var snake = new Snake(200, 200);
