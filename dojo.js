@@ -42,6 +42,8 @@ var Snake = function(startX, startY){
     }
     this.currentDirection = 0;
     this.isUpdated = true;
+    this.score = 0;
+    this.highScore = 0;
 };
 
 Snake.prototype.addBlock = function(x, y){
@@ -121,9 +123,10 @@ Snake.prototype.update = function () {
     }
     this.isUpdated = false;
     if(this.blocks[0][X] == fruit.x && this.blocks[0][Y] == fruit.y){
-        console.log("score++");
         fruit.respawn();
         this.addBlock(-100,-100);
+        this.score++;
+        console.log(this.score);
     }
 }
 
