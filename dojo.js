@@ -123,6 +123,7 @@ Snake.prototype.update = function () {
     if(this.blocks[0][X] == fruit.x && this.blocks[0][Y] == fruit.y){
         console.log("score++");
         fruit.respawn();
+        this.addBlock(-100,-100);
     }
 }
 
